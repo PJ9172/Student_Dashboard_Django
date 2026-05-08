@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Task</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+
+<body>
+    <center>
+        <h1>Student Data</h1>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone No.</th>
+                <th>Email-ID</th>
+                <th>Percentage</th>
+                <th colspan="2">Actions</th>
+                <!-- <th>Delete</th> -->
+            </tr>
+            {% for stud in students %}
+            <tr>
+                <td>{{stud.id}}</td>
+                <td>{{stud.name}}</td>
+                <td>{{stud.number}}</td>
+                <td>{{stud.email}}</td>
+                <td>{{stud.percentage}}</td>
+                <td><a href="/update?id={{stud.id}}"><button>Edit</button></a></td>
+                <td><a href="/delete?id={{stud.id}}"><button>Delete</button></a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="container">
+                <h1>Add New Student</h1>
+                <div class="input-group">
+                    <div class="input-field">
+                        <label>Name</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div class="input-field">
+                        <label>Phone No.</label>
+                        <input type="number" name="number" required>
+                    </div>
+                    <div class="input-field">
+                        <label>Email-ID</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="input-field">
+                        <label>Percentage</label>
+                        <input type="text" name="percentage" required>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">SUBMIT</button>
+            </div>
+        </form>
+    </center>
+
+</body>
+
+</html>
