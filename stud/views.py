@@ -56,7 +56,6 @@ def update(request):
     
 
 def delete(request):
-    if request.method == 'DELETE':
         id = request.GET.get('id')
         Students.objects.filter(id=id).delete()
         return redirect("/dashboard")
