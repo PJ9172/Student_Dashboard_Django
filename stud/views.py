@@ -33,7 +33,7 @@ def get_students(request):
 
 def logout_user(request):
     request.session.flush()
-    return redirect('/login')
+    return redirect('stud/login')
     
     
 def update(request):
