@@ -22,6 +22,7 @@ from tech.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', login, name="login"),
+    path('logout/', logout_user, name='logout'),
     path('register/', register, name="register"),
     path('dashboard/', get_students, name="dashboard"),
     path('update/', update, name="update"),

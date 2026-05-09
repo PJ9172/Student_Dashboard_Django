@@ -1,16 +1,22 @@
-{% load static %} 
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Task</title>
     <link rel="stylesheet" href="{% static 'css/login.css'%}">
 </head>
+
 <body>
+
     <form method="post">
         {% csrf_token %}
         <center>
+            {% if message %}
+            <p style="color:red">{{ message }}</p>
+            {% endif %}
             <div class="container">
                 <h1>Teacher Register</h1>
                 <div class="input">
@@ -30,4 +36,5 @@
         </center>
     </form>
 </body>
+
 </html>

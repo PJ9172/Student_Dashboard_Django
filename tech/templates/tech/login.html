@@ -11,6 +11,9 @@
     <form method="post">
         {% csrf_token %}
         <center>
+            {% if message %}
+            <p style="color:red">{{ message }}</p>
+            {% endif %}
             <div class="container">
                 <h1>Teacher Login</h1>
                 <div class="input">

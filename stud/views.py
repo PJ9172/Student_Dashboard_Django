@@ -4,6 +4,8 @@ from .models import *
 # Create your views here.
 def get_students(request):
     if request.method == 'GET':
+        if not request.session.get('teacher_id'):
+            return redirect('/login')
         student = Students.objects.all()
         if student:
             context = {
@@ -11,7 +13,7 @@ def get_students(request):
             }
             return render(request, 'stud/dashboard.html', context)
         else:
-            return render(request, "stud/dashboard.html", context={'message' : 'Students not available!!!'})
+            return render(request, "stud/dashboard.html", context={'message' : 'Students not available!!!\nPlz Add Students!!!'})
     
     elif request.method == 'POST':
         data = request.POST
@@ -29,6 +31,11 @@ def get_students(request):
         return {'message' : 'Invalid method!!!'}
     
 
+def logout_user(request):
+    request.session.flush()
+    return redirect('/login')
+    
+    
 def update(request):
     id = request.GET.get('id')
     student = Students.objects.filter(id=id).first()
@@ -56,6 +63,12 @@ def update(request):
     
 
 def delete(request):
-        id = request.GET.get('id')
-        Students.objects.filter(id=id).delete()
-        return redirect("/dashboard")
+    id = request.GET.get('id')
+    student = Students.objects.get(id=id)
+    context = {
+        "student" : student
+    }
+    if request.method == 'POST':
+            Students.objects.filter(id=id).delete()
+            return redirect("/dashboard")
+    return render(request, "stud/delete.html", context=context)

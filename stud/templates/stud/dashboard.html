@@ -11,7 +11,10 @@
 
 <body>
     <center>
-        <h1>Student Data</h1>
+        {% if message %}
+        <p style="color:red">{{ message }}</p>
+        {% endif %}
+        <h1>Students Data</h1>
         <table border="1">
             <tr>
                 <th>ID</th>
@@ -57,7 +60,8 @@
                         <input type="number" name="percentage" required>
                     </div>
                 </div>
-                <button type="submit" class="submit-btn">SUBMIT</button>
+                <button type="submit" class="submit-btn">SUBMIT</button> <br><br>
+                <a href="logout/">Logout</a>
             </div>
         </form>
     </center>
